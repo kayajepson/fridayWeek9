@@ -118,31 +118,6 @@ namespace HairSalon.Models
       return name;
     }
 
-    // public static Stylist FindByName(string searchName)
-    // {
-    //   MySqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   var cmd = conn.CreateCommand() as MySqlCommand;
-    //   cmd.CommandText = @"SELECT * FROM stylists WHERE name = (@searchName);";
-    //   cmd.Parameters.AddWithValue("@searchName", searchName);
-    //   var rdr = cmd.ExecuteReader() as MySqlDataReader;
-    //   int StylistId = 0;
-    //   string StylistName = "";
-    //   string stylistSpecialty = "";
-    //   while(rdr.Read())
-    //   {
-    //     StylistId = rdr.GetInt32(0);
-    //     StylistName = rdr.GetString(1);
-    //     stylistSpecialty = rdr.GetString(2);
-    //   }
-    //   Stylist newStylist = new Stylist(StylistName, stylistSpecialty, StylistId);
-    //   conn.Close();
-    //   if (conn != null)
-    //   {
-    //     conn.Dispose();
-    //   }
-    //   return newStylist.GetName();
-    // }
 
     public void Edit(string newNameStylist)
     {
@@ -228,23 +203,11 @@ namespace HairSalon.Models
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
+      var cmd2 = conn.CreateCommand() as MySqlCommand;
+      cmd2.CommandText = @"DELETE FROM stylists;";
+      cmd2.ExecuteNonQuery();
       var cmd = conn.CreateCommand() as MySqlCommand;
-
-      Stylist selectedStylist = Stylist.Find(stylistId);
-      Dictionary<string, object> model = new Dictionary<string, object>();
-      List<Client> stylistClients = selectedStylist.GetClients();
-      model.Add("stylist", selectedStylist);
-
-      foreach (Client client in stylistClients)
-      {
-        client.Delete();
-      }
-
-      cmd.CommandText = @"DELETE FROM stylists WHERE id = @thisId;";
-      MySqlParameter thisId = new MySqlParameter();
-      thisId.ParameterName = "@thisId";
-      thisId.Value = _id;
-      cmd.Parameters.Add(thisId);
+      cmd.CommandText = @"DELETE FROM clients;";
       cmd.ExecuteNonQuery();
 
       conn.Close();
