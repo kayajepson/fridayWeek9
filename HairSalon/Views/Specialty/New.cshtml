@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2>//ADD A SPECIALTY//</h2>
+
+
+<form action="/specialties" method="post">
+  <label for="specialtyName">SPECIALTY NAME</label>
+  <input id="specialtyName" name="specialtyName" type="text">
+  <label for="specialtyStylist">STYLISTS WITH THIS SPECIALTY (by ID)</label>
+  <input id="specialtyStylist" name="specialtyStylist" type="text">
+  <button type="submit">ADD</button>
+</form>
+
+<p><a href="/">BACK HOME</a></p>
+<p><a href="/specialties">BACK TO STYLISTS</a></p>

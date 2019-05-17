@@ -15,14 +15,12 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost("/specialties")]
-    public ActionResult Create()
+    public ActionResult Create(string specialtyName, int specialtyStylist)
     {
-      Dictionary<string, object> model = new Dictionary<string, object>();
-      List<Specialty> specialty = Specialty.GetAll();
-      List<Stylist> stylists = Stylist.GetAll();
-      model.Add("specialty", specialty);
-      model.Add("stylists", stylists);
-      return View(model);
+      Specialty newSpecialty = new Specialty(specialtyStylist, specialtyName);
+      List<Stylist> allStylists = Stylist.GetAll();
+      newSpecialty.Save();
+      return RedirectToAction("Index");
     }
 
     [HttpGet("/specialties/{id}")]

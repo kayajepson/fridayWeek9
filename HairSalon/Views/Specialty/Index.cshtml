@@ -11,7 +11,7 @@
 
 @foreach (var specialty in Model)
 {
-  <h3><a href='/specialties/@specialty.GetId()'>@specialty.GetName()</a></h3>
+  <h3><a href='/specialties/@specialty.GetId()'>@specialty.GetNameSpecialty()</a></h3>
 }
 
 <a href="/specialties/new">ADD A SPECIALTY</a>
