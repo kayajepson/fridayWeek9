@@ -4,8 +4,11 @@
 <h2>EDIT CLIENT: @Model["client"].GetNameClient()</h2>
 
 <form action="/stylists/@Model["stylist"].GetId()/clients/@Model["client"].GetId()" method="post">
+    <input type="hidden" name="searchId" value="@Model["client"].GetId()">
   <label for="newNameClient">NAME:</label>
   <input type="text" name="newNameClient" value="@Model["client"].GetNameClient()">
+  <label for="newHairType">HAIR TYPE:</label>
+  <input type="text" name="newHairType" value="@Model["client"].GetHairType()">
   <button type="submit">EDIT</button>
 </form>
 

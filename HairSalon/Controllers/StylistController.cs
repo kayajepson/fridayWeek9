@@ -16,12 +16,6 @@ namespace HairSalon.Controllers
       return View(allStylists);
     }
 
-    [HttpGet("/stylists/new")]
-    public ActionResult New()
-    {
-      return View();
-    }
-
     [HttpPost("/stylists")]
     public ActionResult Create(string stylistName, string stylistSpecialty)
     {
@@ -29,6 +23,12 @@ namespace HairSalon.Controllers
       List<Stylist> allStylists = Stylist.GetAll();
       newStylist.Save();
       return RedirectToAction("Index");
+    }
+
+    [HttpGet("/stylists/new")]
+    public ActionResult New()
+    {
+      return View();
     }
 
 
