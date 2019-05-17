@@ -9,12 +9,6 @@ SPECIALTY: @Model.GetSpecialty()</h3>
 
 <h3>HERE ARE ALL THE CLIENTS FOR THIS STYLIST:</h3>
 
-@* <ul>
-@foreach (var client in @Model["clients"])
-{
-  <li><a href='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()'>@client.GetNameClient()</a></li>
-}
-</ul> *@
 
 <ol>
 @foreach (Client client in @Model.GetClients())
