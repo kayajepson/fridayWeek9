@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using MySql.Data.MySqlSpecialty;
+using MySql.Data.MySqlClient;
 
 namespace HairSalon.Models
 {
@@ -114,20 +114,20 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM specialities WHERE id = (@searchId);";
+      cmd.CommandText = @"SELECT * FROM specialties WHERE id = (@searchId);";
       cmd.Parameters.AddWithValue("@searchId", id);
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
-      int id = 0;
+      int specialtyId = 0;
       string name = "";
       int stylistId = 0;
       while(rdr.Read())
       {
-        int id = rdr.GetInt32(0);
-        int stylistId = rdr.GetInt32(1);
-        string name = rdr.GetString(2);
+        specialtyId = rdr.GetInt32(0);
+        stylistId = rdr.GetInt32(1);
+        name = rdr.GetString(2);
       }
 
-      Specialty newSpecialty = new Specialty(stylistId, name, clientId);
+      Specialty newSpecialty = new Specialty(stylistId, name);
       conn.Close();
       if (conn != null)
       {
@@ -141,7 +141,7 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"UPDATE specialities SET name = @newNameSpecialty WHERE id = @searchId;";
+      cmd.CommandText = @"UPDATE specialties SET name = @newNameSpecialty WHERE id = @searchId;";
       cmd.Parameters.AddWithValue("@searchId", _id);
       cmd.Parameters.AddWithValue("@newNameSpecialty", newNameSpecialty);
       cmd.ExecuteNonQuery();
@@ -157,7 +157,7 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM specialities WHERE id = @thisId;";
+      cmd.CommandText = @"DELETE FROM specialties WHERE id = @thisId;";
       MySqlParameter thisId = new MySqlParameter();
       thisId.ParameterName = "@thisId";
       thisId.Value = _id;

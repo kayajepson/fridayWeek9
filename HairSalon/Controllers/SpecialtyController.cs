@@ -72,31 +72,31 @@ namespace HairSalon.Controllers
     }
 
 
-    [HttpPost("/stylists/{stylistId}/specialties/{specialtyId}")]
-    public ActionResult Update(int stylistId, int specialtyId, string newNameSpecialty, string newHairType)
-    {
-      Specialty specialty = Specialty.Find(specialtyId);
-      specialty.Edit(newNameSpecialty, newHairType);
-      Dictionary<string, object> model = new Dictionary<string, object>();
-      Stylist stylist = Stylist.Find(stylistId);
-      model.Add("stylist", stylist);
-      model.Add("specialty", specialty);
-      return RedirectToAction("Index", "Specialty");
-    }
+    // [HttpPost("/stylists/{stylistId}/specialties/{specialtyId}")]
+    // public ActionResult Update(int stylistId, int specialtyId, string newNameSpecialty, string newHairType)
+    // {
+    //   Specialty specialty = Specialty.Find(specialtyId);
+    //   specialty.Edit(newNameSpecialty, newHairType);
+    //   Dictionary<string, object> model = new Dictionary<string, object>();
+    //   Stylist stylist = Stylist.Find(stylistId);
+    //   model.Add("stylist", stylist);
+    //   model.Add("specialty", specialty);
+    //   return RedirectToAction("Index", "Specialty");
+    // }
 
-    [HttpPost("/stylists/{stylistId}/specialties/{specialtyId}/delete-specialty")]
-    public ActionResult DeleteSpecialty(int stylistId, int specialtyId)
-    {
-      Specialty specialty = Specialty.Find(specialtyId);
-      specialty.Delete();
-      Dictionary<string, object> model = new Dictionary<string, object>();
-      Stylist foundStylist = Stylist.Find(stylistId);
-      List<Specialty> stylistSpecialty = foundStylist.GetSpecialty();
-      model.Add("specialty", stylistSpecialty);
-      model.Add("stylist", foundStylist);
-      return RedirectToAction("Show", "Stylists");
-      //return RedirectToAction("actionName", "controllerName"); goes to a cshtml page in a different controller.
-    }
+    // [HttpPost("/stylists/{stylistId}/specialties/{specialtyId}/delete-specialty")]
+    // public ActionResult DeleteSpecialty(int stylistId, int specialtyId)
+    // {
+    //   Specialty specialty = Specialty.Find(specialtyId);
+    //   specialty.Delete();
+    //   Dictionary<string, object> model = new Dictionary<string, object>();
+    //   Stylist foundStylist = Stylist.Find(stylistId);
+    //   List<Specialty> stylistSpecialty = foundStylist.GetSpecialty();
+    //   model.Add("specialty", stylistSpecialty);
+    //   model.Add("stylist", foundStylist);
+    //   return RedirectToAction("Show", "Stylists");
+    //   //return RedirectToAction("actionName", "controllerName"); goes to a cshtml page in a different controller.
+    // }
 
   }
 }
