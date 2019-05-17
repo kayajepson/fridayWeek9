@@ -90,7 +90,7 @@ namespace HairSalon.Controllers
       Stylist stylist = Stylist.Find(stylistId);
       model.Add("stylist", stylist);
       model.Add("client", client);
-      return View("Show", model);
+      return RedirectToAction("Index", "Clients");
     }
 
     [HttpPost("/stylists/{stylistId}/clients/{clientId}/delete-client")]

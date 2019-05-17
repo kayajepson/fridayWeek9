@@ -19,13 +19,13 @@ SPECIALTY: @Model.GetSpecialty()</h3>
 <ol>
 @foreach (Client client in @Model.GetClients())
 {
-  <li><a href='/stylists/@Model.GetId()/clients/@client.GetId()'>@client.GetNameClient()</a></li>
+  <li><a href='/clients/@client.GetId()'>@client.GetNameClient()</a></li>
 }
 </ol>
 
-<p><a href='/stylists/@Model.GetId()/edit'><button type='submit'>Edit Item</button></a></p>
+
 <p><a href='/stylists/@Model.GetId()/clients/new'>ADD A NEW CLIENT</a></p>
-<br><br>
+<p><a href='/stylists/@Model.GetId()/edit'><button type='submit'>EDIT STYLIST</button></a></p>
 <form action="/stylists/@Model.GetId()/delete-stylist" method="post">
 <button type="submit" name="button">DELETE THIS STYLIST</button>
 </form>

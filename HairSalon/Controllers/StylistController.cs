@@ -31,6 +31,24 @@ namespace HairSalon.Controllers
       return View();
     }
 
+    [HttpGet("/stylists/{stylistId}/edit")]
+    public ActionResult Edit(int stylistId)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Stylist stylist = Stylist.Find(stylistId);
+      model.Add("stylist", stylist);
+      return View(model);
+    }
+
+    [HttpPost("/stylists/{stylistId}/edit")]
+    public ActionResult Update(int stylistId, string newNameStylist)
+    {
+      Stylist stylist = Stylist.Find(stylistId);
+      stylist.Edit(newNameStylist);
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      model.Add("stylist", stylist);
+      return RedirectToAction("Index", "Stylists");
+    }
 
     [HttpGet("/stylists/{id}")]
     public ActionResult Show(int id)
@@ -71,13 +89,7 @@ namespace HairSalon.Controllers
       return RedirectToAction("Index", "Home");
     }
 
-    // [HttpPost("/stylists/{stylistId}/edit")]
-    // public ActionResult Edit(int stylistId, string newStylistName)
-    // {
-    //   Stylist model = Stylist.Find(stylistId);
-    //   model.Edit(stylistId, newStylistName);
-    //   return RedirectToAction("Index");
-    // }
+
 
 
 

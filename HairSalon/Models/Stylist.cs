@@ -99,6 +99,23 @@ namespace HairSalon.Models
       return newStylist;
     }
 
+    public void Edit(string newNameStylist)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE stylists SET name = @newNameStylist WHERE id = @searchId;";
+      cmd.Parameters.AddWithValue("@searchId", _id);
+      cmd.Parameters.AddWithValue("@newNameStylist", newNameStylist);
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
+
     public List<Client> GetClients()
     {
       List<Client> allStylistClients = new List<Client>{};
