@@ -23,12 +23,11 @@ SPECIALTY: @Model.GetSpecialty()</h3>
 }
 </ol>
 
-
+<p><a href='/stylists/@Model.GetId()/edit'><button type='submit'>Edit Item</button></a></p>
 <p><a href='/stylists/@Model.GetId()/clients/new'>ADD A NEW CLIENT</a></p>
-<p><a href='/stylists'>RETURN TO STYLIST LIST</a></p>
-
 <br><br>
 <form action="/stylists/@Model.GetId()/delete-stylist" method="post">
 <button type="submit" name="button">DELETE THIS STYLIST</button>
 </form>
+<p><a href='/stylists'>RETURN TO STYLIST LIST</a></p>
 <p><a href='/'>RETURN TO HOME</a></p>

@@ -8,11 +8,13 @@ namespace HairSalon.Models
     private string _name;
     private int _id;
     private int _stylistId;
+    private string _hair;
 
-    public Client (string name, int stylistId, int id = 0)
+    public Client (string name, int stylistId, string hairType, int id = 0)
     {
       _name = name;
       _stylistId = stylistId;
+      _hair = hairType;
       _id = id;
     }
 
@@ -130,27 +132,21 @@ namespace HairSalon.Models
       return newClient;
     }
 
-    public void Edit(string newNameClient)
+    public void Edit(string newNameClient, string newHairType)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"UPDATE clients SET name = @newNameClient WHERE id = @searchId;";
+      cmd.CommandText = @"UPDATE clients SET (name, hairType) = (@newNameClient, @newHairType) WHERE id = @searchId;";
       cmd.Parameters.AddWithValue("@searchId", _id);
       cmd.Parameters.AddWithValue("@newNameClient", newNameClient);
+      cmd.Parameters.AddWithValue("@newHairType", newHairType);
       cmd.ExecuteNonQuery();
-      _name = newNameClient;
-
       conn.Close();
       if (conn != null)
       {
         conn.Dispose();
       }
-    }
-
-    public int GetStylistId()
-    {
-      return _stylistId;
     }
 
     public void Delete()
@@ -171,7 +167,7 @@ namespace HairSalon.Models
       }
     }
 
-    public void DeleteAllClientss()
+    public void DeleteAllClients()
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
@@ -188,5 +184,7 @@ namespace HairSalon.Models
         conn.Dispose();
       }
     }
+
+    
   }
 }

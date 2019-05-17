@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>//CLIENTS//</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>NO CLIENTS HAVE BEEN ADDED YET!</h3>
+}
+
+@foreach (var client in Model)
+{
+  <h3><a href='/clients/@client.GetId()'>@client.GetName()</a></h3>
+}
+
+<a href="/clients/new">ADD A CLIENT</a>
+<form action="/stylists/delete-all-clients" method="post">
+<button type="submit" name="button">DELETE ALL CLIENTS</button>
+</form>
+<p><a href='/'>BACK HOME</a></p>

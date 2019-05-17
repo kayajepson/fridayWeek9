@@ -44,10 +44,10 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost("/stylists/{stylistId}/clients/{clientId}")]
-    public ActionResult Update(int stylistId, int clientId, string newNameClient)
+    public ActionResult Update(int stylistId, int clientId, string newNameClient, string newHairType)
     {
       Client client = Client.Find(clientId);
-      client.Edit(newNameClient);
+      client.Edit(newNameClient, newHairType);
       Dictionary<string, object> model = new Dictionary<string, object>();
       Stylist stylist = Stylist.Find(stylistId);
       model.Add("stylist", stylist);
@@ -68,7 +68,6 @@ namespace HairSalon.Controllers
       return RedirectToAction("Show", "Stylists");
       //return RedirectToAction("actionName", "controllerName"); goes to a cshtml page in a different controller.
     }
-
 
   }
 }
