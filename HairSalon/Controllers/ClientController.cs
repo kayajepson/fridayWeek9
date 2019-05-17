@@ -48,7 +48,7 @@ namespace HairSalon.Controllers
     public ActionResult DeleteAll()
     {
       Client.ClearAll();
-      return View();
+      return RedirectToAction("Index", "Home");
     }
 
     [HttpGet("/stylists/{stylistId}/clients/{clientId}/edit")]

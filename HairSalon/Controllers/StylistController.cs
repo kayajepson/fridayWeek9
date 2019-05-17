@@ -65,25 +65,20 @@ namespace HairSalon.Controllers
       return RedirectToAction("Index", "Stylists");
     }
 
-    // [HttpPost("/stylists/delete-all-stylists")]
-    // public ActionResult DeleteAllSty()
-    // {
-    //   DeleteAllStylists();
-    //   // Stylist selectedStylist = Stylist.Find(stylistId);
-    //   // selectedStylist.DeleteStylist(stylistId);
-    //   // Dictionary<string, object> model = new Dictionary<string, object>();
-    //   // List<Client> stylistClients = selectedStylist.GetClients();
-    //   // model.Add("stylist", selectedStylist);
-    //   return RedirectToAction("Index", "Stylists");
-    // }
-
-    [HttpPost("/stylists/{stylistId}/edit")]
-    public ActionResult Edit(int stylistId, string newStylistName)
+    [HttpPost("/stylists/delete-all-stylists")]
+    public ActionResult DeleteAllSty()
     {
-      Stylist model = Stylist.Find(stylistId);
-      model.Edit(stylistId, newStylistName);
-      return RedirectToAction("Index");
+      Stylist.ClearAll();
+      return RedirectToAction("Index", "Home");
     }
+
+    // [HttpPost("/stylists/{stylistId}/edit")]
+    // public ActionResult Edit(int stylistId, string newStylistName)
+    // {
+    //   Stylist model = Stylist.Find(stylistId);
+    //   model.Edit(stylistId, newStylistName);
+    //   return RedirectToAction("Index");
+    // }
 
 
 
