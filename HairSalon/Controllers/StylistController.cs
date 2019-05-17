@@ -17,9 +17,9 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost("/stylists")]
-    public ActionResult Create(string stylistName, string stylistSpecialty)
+    public ActionResult Create(string stylistName)
     {
-      Stylist newStylist = new Stylist(stylistName, stylistSpecialty);
+      Stylist newStylist = new Stylist(stylistName);
       List<Stylist> allStylists = Stylist.GetAll();
       newStylist.Save();
       return RedirectToAction("Index");

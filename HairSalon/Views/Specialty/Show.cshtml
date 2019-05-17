@@ -1,0 +1,20 @@
+@using HairSalon.Models;
+@{
+  Layout = "_Layout";
+}
+
+<h2>//SPECIALTY DETAILS//</h2>
+<h3>SPECIALTY: @Model["specialty"].GetNameSpecialty()<br>
+<h3>HERE ARE ALL THE STYLISTS FOR THIS SPECIALTY:</h3>
+
+
+
+<ol>
+@foreach (Stylist stylist in @Model["specialty"].GetStylists())
+{
+  <li><a href='/stylists/@Model["stylist"].GetId()'>@Model["stylist"].GetName()</a></li>
+}
+</ol>
+
+<p><a href='/specialties'>RETURN TO SPECIALTY LIST</a></p>
+<p><a href='/'>RETURN TO HOME</a></p>

@@ -84,14 +84,12 @@ namespace HairSalon.Models
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
       int StylistId = 0;
       string StylistName = "";
-      string stylistSpecialty = "";
       while(rdr.Read())
       {
         StylistId = rdr.GetInt32(0);
         StylistName = rdr.GetString(1);
-        stylistSpecialty = rdr.GetString(2);
       }
-      Stylist newStylist = new Stylist(StylistName, stylistSpecialty, StylistId);
+      Stylist newStylist = new Stylist(StylistName, StylistId);
       conn.Close();
       if (conn != null)
       {
