@@ -11,11 +11,12 @@
 
 @foreach (var client in Model)
 {
-  <h3><a href='/clients/@client.GetId()'>@client.GetName()</a></h3>
+  <h3><a href='/clients/@client.GetId()'>@client.GetNameClient()</a></h3>
 }
 
 <a href="/clients/new">ADD A CLIENT</a>
+<p><a href='/'>BACK HOME</a></p>
+
 <form action="/stylists/delete-all-clients" method="post">
 <button type="submit" name="button">DELETE ALL CLIENTS</button>
 </form>
-<p><a href='/'>BACK HOME</a></p>

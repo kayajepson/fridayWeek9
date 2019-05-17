@@ -5,16 +5,24 @@
 
 <h1>//CLIENT DETAILS// </h1>
 
-<h2>NAME: @Model["client"].GetNameClient()</h2>
-<h3>STYLIST: @Model["stylist"].GetName()</h3>
+<h2>NAME: @Model["selectedClient"].GetNameClient()</h2>
+<h2>NAME: @Model["selectedClient"].GetHairType()</h2>
+<h3>STYLIST:</h3>
+
+<ol>
+@foreach (Stylist stylist in @Model["selectedClient"].GetStylists())
+{
+  <li><a href='/stylists/@Model.GetId()'>@stylist.GetName()</a></li>
+}
+</ol>
 
 
-<form action="/stylists/@Model["stylist"].GetId()/clients/@Model["client"].GetId()/delete-client" method="post">
+<form action="/stylists/@Model["selectedClient"].GetStylistId()/clients/@Model["selectedClient"].GetId()/delete-client" method="post">
   <button type="submit" name="button">DELETE THIS CLIENT</button>
 </form>
 
 <br>
 
-<a href='/stylists/@Model["stylist"].GetId()/clients/@Model["client"].GetId()/edit'>EDIT THIS CLIENT</a><BR>
-<a href='/stylists/@Model["stylist"].GetId()/clients/new'>ADD ANOTHER CLIENT</a><BR>
+<a href='/stylists/@Model["selectedClient"].GetStylistId()/clients/@Model["selectedClient"].GetId()/edit'>EDIT THIS CLIENT</a><BR>
+<a href='/stylists/@Model["selectedClient"].GetStylistId()/clients/new'>ADD ANOTHER CLIENT</a><BR>
 <a href='/stylists'>VIEW ALL STYLISTS</a>

@@ -33,10 +33,44 @@ namespace HairSalon.Models
       return _id;
     }
 
+    public string GetHairType()
+    {
+      return _hairType;
+    }
+
     public int GetStylistId()
     {
       return _stylistId;
     }
+
+
+    public List<Stylist> GetStylists()
+    {
+      List<Stylist> allStylists = new List<Stylist>{};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM clients WHERE stylistId = @stylistId;";
+      MySqlParameter stylistId = new MySqlParameter();
+      stylistId.ParameterName = "@stylistId";
+      stylistId.Value = this._id;
+      cmd.Parameters.Add(stylistId);
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        string nameStylist = rdr.GetString(1);
+        string specialty = rdr.GetString(2);
+        Stylist newStylist = new Stylist(nameStylist, specialty);
+        allStylists.Add(newStylist);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return allStylists;
+    }
+
 
 
     public static List<Client> GetAll()
