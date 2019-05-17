@@ -17,11 +17,15 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost("/stylists")]
-    public ActionResult Create(string stylistName)
+    public ActionResult Create(string stylistName, string stylistSpecialty)
     {
       Stylist newStylist = new Stylist(stylistName);
       List<Stylist> allStylists = Stylist.GetAll();
       newStylist.Save();
+      int stylistId = newStylist.GetId();
+      Specialty newSpecialty = new Specialty(stylistId, stylistSpecialty);
+      List<Specialty> allSpecialtys = Specialty.GetAll();
+      newSpecialty.Save();
       return RedirectToAction("Index");
     }
 
@@ -62,7 +66,7 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost("/stylists/{stylistId}/clients")]
-    public ActionResult Create(string nameClient, int stylistId, string hairType)
+    public ActionResult CreateClient(string nameClient, int stylistId, string hairType)
     {
       Stylist foundStylist = Stylist.Find(stylistId);
       Client newClient = new Client(nameClient, stylistId, hairType);

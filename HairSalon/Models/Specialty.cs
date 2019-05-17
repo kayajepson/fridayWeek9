@@ -142,17 +142,18 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM specialties WHERE stylist_id = @stylistId;";
+      cmd.CommandText = @"SELECT stylists.name FROM stylists JOIN specialties_stylists ON (specialties_stylists.specialty_id = @specialtyId) JOIN stylists ON (@stylistId = specialties_stylists.stylist_id) WHERE stylist_id = @stylistId;";
       MySqlParameter stylistId = new MySqlParameter();
       stylistId.ParameterName = "@stylistId";
       stylistId.Value = this._id;
       cmd.Parameters.Add(stylistId);
+      cmd.Parameters.AddWithValue("@specialtyId", _id);
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
       while(rdr.Read())
       {
-        int clientId = rdr.GetInt32(0);
-        string nameStylist = rdr.GetString(1);
-        Stylist newStylist = new Stylist(nameStylist, clientId);
+        int thisStylistId = rdr.GetInt32(1);
+        string nameStylist = rdr.GetString(2);
+        Stylist newStylist = new Stylist(nameStylist, thisStylistId);
         allStylists.Add(newStylist);
       }
       conn.Close();
@@ -162,6 +163,7 @@ namespace HairSalon.Models
       }
       return allStylists;
     }
+
 
     public void Edit(string newNameSpecialty)
     {

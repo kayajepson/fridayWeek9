@@ -12,7 +12,7 @@
 <ol>
 @foreach (Stylist stylist in @Model["specialty"].GetStylists())
 {
-  <li><a href='/stylists/@Model["stylist"].GetId()'>@Model["stylist"].GetName()</a></li>
+  <li><a href='/stylists/@stylist.GetId()'>@stylist.GetName()</a></li>
 }
 </ol>
 
