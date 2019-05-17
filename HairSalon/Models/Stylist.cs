@@ -29,8 +29,11 @@ namespace HairSalon.Models
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
+      var cmd2 = conn.CreateCommand() as MySqlCommand;
+      cmd2.CommandText = @"DELETE FROM stylists;";
+      cmd2.ExecuteNonQuery();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM stylists;";
+      cmd.CommandText = @"DELETE FROM clients;";
       cmd.ExecuteNonQuery();
       conn.Close();
       if (conn != null)
@@ -203,13 +206,13 @@ namespace HairSalon.Models
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
-      var cmd2 = conn.CreateCommand() as MySqlCommand;
-      cmd2.CommandText = @"DELETE FROM stylists;";
-      cmd2.ExecuteNonQuery();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM clients;";
+      cmd.CommandText = @"DELETE FROM stylists WHERE id = @thisId;";
+      MySqlParameter thisId = new MySqlParameter();
+      thisId.ParameterName = "@thisId";
+      thisId.Value = _id;
+      cmd.Parameters.Add(thisId);
       cmd.ExecuteNonQuery();
-
       conn.Close();
       if (conn != null)
       {
