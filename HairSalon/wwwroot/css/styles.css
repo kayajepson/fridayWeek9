@@ -1,0 +1,18 @@
+body {
+
+  background-color: #ffeffc;
+  background-image: url("../img/hair.jpg");
+  background-size: cover;
+  font-family: 'Playfair Display', serif;
+}
+
+footer {
+  background-color: white;
+  color: #3d1235;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 20px;
+  font-family: 'Playfair Display', serif;
+}
