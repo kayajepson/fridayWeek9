@@ -11,10 +11,16 @@
 
 @foreach (var client in Model)
 {
-  <h3><a href='/clients/@client.GetId()'>@client.GetNameClient()</a></h3>
+  <h3><a href='/clients/@Model["client"].GetId()'>@Model["client"].GetNameClient()</a></h3>
 }
 
-<a href="/clients/new">ADD A CLIENT</a>
+
+@if (@Model["stylists"].Count > 0)
+{
+  <a href="/stylists/{stylistId}/clients/new">ADD A CLIENT</a>
+}
+
+
 <p><a href='/'>BACK HOME</a></p>
 
 <form action="/clients/delete" method="post">

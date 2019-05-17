@@ -10,8 +10,20 @@ namespace HairSalon.Controllers
     [HttpGet("/clients")]
     public ActionResult Index()
     {
-      List<Client> allClients = Client.GetAll();
-      return View(allClients);
+     List<Client> allClients = Client.GetAll();
+    return View(allClients);
+    }
+
+    [HttpPost("/clients")]
+    public ActionResult Create(int id)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Client selectedClient = Client.Find(id);
+      List<Client> client = Client.GetAll();
+      List<Stylist> stylists = Stylist.GetAll();
+      model.Add("client", client);
+      model.Add("stylists", stylists);
+      return View(model);
     }
 
     [HttpGet("/clients/{id}")]
