@@ -7,15 +7,6 @@
 
 <h2>NAME: @Model["selectedClient"].GetNameClient()</h2>
 <h2>HAIR TYPE: @Model["selectedClient"].GetHairType()</h2>
-<h3>STYLIST:</h3>
-
-<ol>
-@foreach (Stylist clientStylist in @Model["clientStylist"])
-{
-  <li><a href='/stylists/@clientStylist.GetId()'>@clientStylist.GetName()</a></li>
-}
-</ol>
-
 
 <form action="/stylists/@Model["selectedClient"].GetStylistId()/clients/@Model["selectedClient"].GetId()/delete-client" method="post">
   <button type="submit" name="button">DELETE THIS CLIENT</button>

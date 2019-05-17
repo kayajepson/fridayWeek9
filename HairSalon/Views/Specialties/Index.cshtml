@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>//SPECIALTIES//</h1>
+
+@if (@Model["stylists"].Count > 0)
+{
+  <a href="/stylists/{stylistId}/specialties/new">ADD A SPECIALTY</a>
+}
+
+@if (@Model["specialty"].Count == 0)
+{
+  <h3>NO SPECIALTIES HAVE BEEN ADDED YET!</h3>
+}
+
+@foreach (var specialty in @Model["specialty"])
+{
+  <h3><a href='/specialties/@specialty.GetId()'>@specialty.GetName()</a></h3>
+}
+
+
+
+
+<p><a href='/'>BACK HOME</a></p>
+
+<form action="/specialties/delete" method="post">
+<button type="submit" name="button">DELETE ALL CLIENTS</button>
+</form>
