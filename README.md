@@ -10,6 +10,9 @@ _A program that will show stylists at a salon and their corresponding client lis
 | ------------- |:-------------:| -----:|
 | The program should allow employees(stylists) to input new stylists into the database | "kara" | kara |
 | The program should allow employees(stylists) to input new clients into the database | "sara" | sara |
+| The program should allow employees(stylists) to input new specialties into the database | "blondes" | blondes |
+| The program should allow employees(stylists) to assign specialties to stylists | "sara, blondes" | sara - blondes |
+| The program should allow employees(stylists) to assign clients to stylists | "sara, jessica" | sara - jessica |
 | The program should not allow clients to be inputted if there are no stylists in the database | -- | -- |
 | The program should return information on each stylist or client when clicked on | kara | name, specialty |
 | The program should allow you to delete both stylists and clients separately | -- | -- |
