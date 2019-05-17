@@ -1,0 +1,12 @@
+@{
+  Layout = "_Layout";
+}
+<h2>EDIT STYLIST: @Model["stylist"].GetNameStylist()</h2>
+
+<form action="/stylists/@Model["stylist"].GetId()" method="post">
+  <label for="newStylistName">NAME:</label>
+  <input type="text" name="newStylistName" value="@Model["stylist"].GetNameStylist()">
+  <button type="submit">EDIT</button>
+</form>
+
+<h4><a href="/stylists/">RETURN HOME</a></h4>
