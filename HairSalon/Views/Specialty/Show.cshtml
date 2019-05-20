@@ -7,14 +7,24 @@
 <h3>SPECIALTY: @Model["specialty"].GetNameSpecialty()<br>
 <h3>HERE ARE ALL THE STYLISTS FOR THIS SPECIALTY:</h3>
 
-
-
 <ol>
-@foreach (Stylist stylist in @Model["specialty"].GetStylists())
+@foreach (Stylist stylist in @Model["stylist"])
 {
   <li><a href='/stylists/@stylist.GetId()'>@stylist.GetName()</a></li>
 }
 </ol>
+
+
+<form action="/specialties/@Model["specialty"].GetId()/addStylist" method="post">
+  <label for="stylistId">ADD A STYLIST TO THIS SPECIALTY: </label>
+  <select name="stylistId">
+    @foreach(var stylist in Model["allStylists"])
+    {
+      <option value= "@stylist.GetId()" name="stylistId">@stylist.GetName()</option>
+    }
+  </select>
+  <button type="submit" name="button">Add Course</button>
+</form>
 
 <p><a href='/specialties'>RETURN TO SPECIALTY LIST</a></p>
 <p><a href='/'>RETURN TO HOME</a></p>

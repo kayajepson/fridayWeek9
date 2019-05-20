@@ -92,6 +92,30 @@ namespace HairSalon.Models
       return newStylist;
     }
 
+    public static Stylist FindByName(string stylistName)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM stylists WHERE name LIKE @stylistName;";
+      cmd.Parameters.AddWithValue("@stylistName", stylistName);
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      int StylistId = 0;
+      string StylistName = "";
+      while(rdr.Read())
+      {
+        StylistId = rdr.GetInt32(0);
+        StylistName = rdr.GetString(1);
+      }
+      Stylist newStylist = new Stylist(StylistName, StylistId);
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return newStylist;
+    }
+
     public string GetSpecialty()
     {
       MySqlConnection conn = DB.Connection();
